@@ -1,5 +1,4 @@
-import { Box, Button, Flex, Heading, Spacer, VStack } from "@chakra-ui/react";
-import React from "react";
+import { Box, Button, ButtonGroup, Heading, Stack } from "@chakra-ui/react";
 
 interface Props {
   setPage: any;
@@ -8,17 +7,25 @@ interface Props {
 export default function Navbar({ setPage }: Props) {
   return (
     <>
-      <Heading textAlign={"center"} textColor={"green.800"} padding="30px">
-        Pokemon App
-      </Heading>
-      <Flex justify="center" gap="2">
-        <Button colorScheme="teal" onClick={() => setPage("pokemons")}>
-          Pokemon Names
-        </Button>
-        <Button colorScheme="teal" onClick={() => setPage("PokeInfo")}>
-          Pokemon Info
-        </Button>
-      </Flex>
+      <Stack as={Box} textAlign={"center"} align={"center"} bg="teal.200">
+        <Heading
+          fontWeight={600}
+          fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+          marginTop={2}
+        >
+          Pokemon App
+        </Heading>
+        <Stack direction="row">
+          <ButtonGroup size="sm">
+            <Button colorScheme="teal" onClick={() => setPage("pokemons")}>
+              Pokemon Names
+            </Button>
+            <Button colorScheme="teal" onClick={() => setPage("PokeInfo")}>
+              Pokemon Info
+            </Button>
+          </ButtonGroup>
+        </Stack>
+      </Stack>
     </>
   );
 }

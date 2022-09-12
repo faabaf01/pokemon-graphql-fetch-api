@@ -1,4 +1,4 @@
-import { Box, VStack } from "@chakra-ui/react";
+import { Box, Stack, VStack } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import Pokemon from "./Pokemon";
 
@@ -17,9 +17,13 @@ const Pokemons = () => {
       {status === "loading" && <div>Loading data ... </div>}
       {status === "error" && <div>Error fetching data </div>}
       {status === "success" && (
-        <VStack align={"inherit"}>
+        <VStack align={"center"}>
           {data.results.map((pokemon: { name: string }) => (
-            <Box bg={"blue.100"} alignSelf={"center"} width={"80%"}>
+            <Box
+              width={{ base: 320, sm: 550, md: 650, lg: 750 }}
+              key={pokemon.name}
+              bg={"purple.100"}
+            >
               <Pokemon key={pokemon.name} pokemon={pokemon} />
             </Box>
           ))}
