@@ -1,19 +1,34 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import Navbar from "./components/Navbar";
+import Pokemons from "./components/Pokemons";
+import Bulbasaur from "./components/Bulbasaur";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { ChakraProvider, Stack } from "@chakra-ui/react";
+import theme from "../styles/theme";
+
+const client = new QueryClient();
 
 function App() {
-  const [pokemon, setPokemon] = useState<any>({})
-  useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-      .then(response => response.json())
-      .then(data => setPokemon(data));
-  },[])
+  const [page, setPage] = useState("pokemons");
+
   return (
-    <div className="App">
-      {JSON.stringify(pokemon.abilities)}
-    </div>
-  )
+    <ChakraProvider theme={theme}>
+      <QueryClientProvider client={client}>
+        <Stack
+          minW={"100vh"}
+          direction={{ base: "row", md: "column" }}
+          bg="#D1FEFF"
+          align={"left"}
+        >
+          <Navbar setPage={setPage} />
+
+          {page === "pokemons" ? <Pokemons /> : <Bulbasaur />}
+        </Stack>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </ChakraProvider>
+  );
 }
 
-export default App
+export default App;
