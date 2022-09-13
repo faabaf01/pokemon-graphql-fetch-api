@@ -1,4 +1,4 @@
-import { Box, Stack, VStack } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import Pokemon from "./Pokemon";
 

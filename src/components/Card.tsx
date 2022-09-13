@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 
 interface Props {
   data: any;
