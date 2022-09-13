@@ -7,7 +7,7 @@ interface Props {
 export default function Navbar({ setPage }: Props) {
   return (
     <>
-      <Stack as={Box} textAlign={"center"} align={"center"} bg="teal.200">
+      <Stack as={Box} textAlign={"center"} align={"center"}>
         <Heading
           fontWeight={600}
           fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}

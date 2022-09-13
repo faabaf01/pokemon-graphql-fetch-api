@@ -10,14 +10,14 @@ function App() {
   const [page, setPage] = useState("pokemons");
 
   return (
-    <>
+    <Flex bg="#c7fff5">
       <Container maxW={"3xl"}>
         <Navbar setPage={setPage} />
 
         {page === "pokemons" ? <Pokemons /> : <Bulbasaur />}
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </Container>
-    </>
+    </Flex>
   );
 }
 

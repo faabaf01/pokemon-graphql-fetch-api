@@ -22,7 +22,7 @@ const Pokemons = () => {
             <Box
               width={{ base: 320, sm: 550, md: 650, lg: 750 }}
               key={pokemon.name}
-              bg={"purple.100"}
+              bg={"teal.200"}
             >
               <Pokemon key={pokemon.name} pokemon={pokemon} />
             </Box>

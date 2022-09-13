@@ -35,7 +35,7 @@ const Pokemon = ({ pokemon }: Props) => {
       <Button
         width={"100px"}
         textTransform={"capitalize"}
-        colorScheme={"red"}
+        colorScheme={"cyan"}
         onClick={() => setNamePoke(pokemon.name)}
       >
         {pokemon.name}
@@ -55,7 +55,7 @@ const Pokemon = ({ pokemon }: Props) => {
             >
               {pokemon.name}
             </Heading>
-            <Box padding={4} bg={"beige"}>
+            <Box padding={4}>
               <Image
                 w={{ base: "80px", sm: "90px", lg: "150px" }}
                 h={{ base: "80px", sm: "90px", lg: "150px" }}

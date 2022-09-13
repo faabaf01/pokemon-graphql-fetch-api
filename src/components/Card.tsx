@@ -8,7 +8,7 @@ const Card = ({ data }: Props) => {
   return (
     <>
       {/* <Flex flex={1} align={"center"} justify={"center"}> */}
-      <VStack w={"150px"} bg={"green.200"} textAlign={"center"}>
+      <VStack w={"160px"} bg={"blue.100"} textAlign={"center"}>
         {data.abilities.map((poke: { ability: { name: string } }) => {
           return (
             <Box bg={"purple.200"} padding={1} rounded={10} w={"100px"}>
