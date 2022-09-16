@@ -1,19 +1,20 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
-import Pokemons from "./Pokemons";
-import Bulbasaur from "./Bulbasaur";
 import { Container, Flex } from "@chakra-ui/react";
+import GetAbilities from "../graphql/GetAbilities";
+import GetAllPokemons from "./GetAllPokemons";
 
 function App() {
-  const [page, setPage] = useState("pokemons");
+  const [page, setPage] = useState([]);
 
   return (
-    <Flex bg="#c7fff5">
+    <Flex bg="orange.100">
       <Container maxW={"3xl"}>
         <Navbar setPage={setPage} />
+        <GetAllPokemons />
 
-        {page === "pokemons" ? <Pokemons /> : <Bulbasaur />}
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+        {/* <GetAbilities /> */}
+        {/* {page === "pokemons" ? <Pokemons /> : <Bulbasaur />} */}
       </Container>
     </Flex>
   );

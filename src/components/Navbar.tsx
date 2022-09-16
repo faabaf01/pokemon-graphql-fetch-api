@@ -17,10 +17,10 @@ export default function Navbar({ setPage }: Props) {
         </Heading>
         <Stack direction="row">
           <ButtonGroup size="sm">
-            <Button colorScheme="teal" onClick={() => setPage("pokemons")}>
+            <Button colorScheme="orange" onClick={() => setPage("pokemons")}>
               Pokemon Names
             </Button>
-            <Button colorScheme="teal" onClick={() => setPage("PokeInfo")}>
+            <Button colorScheme="orange" onClick={() => setPage("PokeInfo")}>
               Pokemon Info
             </Button>
           </ButtonGroup>
