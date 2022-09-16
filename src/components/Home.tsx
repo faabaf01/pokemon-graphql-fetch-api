@@ -12,7 +12,6 @@ function App() {
       <Container maxW={"3xl"}>
         <Navbar setPage={setPage} />
         <GetAllPokemons />
-
         {/* <GetAbilities /> */}
         {/* {page === "pokemons" ? <Pokemons /> : <Bulbasaur />} */}
       </Container>
