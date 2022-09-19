@@ -1,4 +1,4 @@
-const POKEMON_MOVES = `
+const POKEMON_DETAIL = `
   query pokemon( $name: String!) {
       pokemon(name: $name) {
         id
@@ -20,4 +20,4 @@ const POKEMON_MOVES = `
     }
   `;
 
-export default POKEMON_MOVES;
+export default POKEMON_DETAIL;

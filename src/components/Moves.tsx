@@ -1,7 +1,8 @@
 // import { Button } from "@chakra-ui/react"
 import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import POKEMON_MOVES from "../graphql/GetMoves";
+import POKEMON_DETAIL from "../graphql/GetPokemonDetail";
+// import POKEMON_MOVES from "../graphql/GetMoves";
 
 interface Props {}
 
@@ -11,19 +12,24 @@ export default function PokeMoves(props: Props) {
 
   const name = queryParams.get("name");
   console.log(queryParams.get("id"));
-  const [poke, setPoke] = useState([]);
+  const [moves, setMoves] = useState([]);
 
   useEffect(() => {
     fetch("https://graphql-pokeapi.graphcdn.app/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        query: POKEMON_MOVES,
+        query: POKEMON_DETAIL,
         variables: { name: name },
       }),
     })
       .then((res) => res.json())
-      .then((data) => setPoke(data.data.pokemon.moves));
+      // .then((data) => setPoke(data.data.pokemon.moves));
+      .then((data) => {
+        console.log(data);
+        console.log(data.data.pokemon);
+        return setMoves(data.data.pokemon.moves);
+      });
   }, []);
 
   return (
@@ -37,7 +43,7 @@ export default function PokeMoves(props: Props) {
         paddingBlock={10}
         paddingInline={20}
       >
-        {poke.map((p: { move: { name: string } }, i: number) => (
+        {moves.map((p: { move: { name: string } }, i: number) => (
           <Box
             key={i}
             bg="yellow.200"
