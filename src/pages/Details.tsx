@@ -1,59 +1,28 @@
-import { Button } from "@chakra-ui/react"
-import { Link } from "@tanstack/react-location"
-import { useEffect, useState } from "react"
-const POKEMON_DETAIL = `
-query pokemon( $name: String!) {
-    pokemon(name: $name) {
-      id
-      name
-      sprites {
-        front_default
-      }
-      moves {
-        move {
-          name
-        }
-      }
-      types {
-        type {
-          name
-        }
-      }
-    }
-  }
-`;
+// import { Button } from "@chakra-ui/react"
+import { Box, Button, Divider, Stack } from "@chakra-ui/react";
+import { Link } from "@tanstack/react-location";
+import PokeMoves from "../components/Moves";
+import PokePhoto from "../components/PokePhoto";
+import PokeTypes from "../components/Types";
 
 interface Props {}
 
 function Details(props: Props) {
-    const {} = props
-    const queryParams = new URLSearchParams(window.location.search)
-    
-    const name = queryParams.get("name")
-    console.log(queryParams.get('id'));
-    const [poke, setPoke] = useState([]);
+  const {} = props;
 
-
-    useEffect(() => {
-      fetch("https://graphql-pokeapi.graphcdn.app/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: POKEMON_DETAIL, variables: {name: name} }),
-      })
-        .then((res) => res.json())
-        .then((data) => setPoke(data.data.pokemon.moves));
-    }, []);
-
-    return (
-     <div>
-        {JSON.stringify(poke)}
+  return (
+    <Stack bg={"teal.100"}>
+      <Box m={4} alignSelf={"center"}>
         <Link to="/">
-            <Button>
-            go to home
-            </Button>
+          <Button colorScheme={"cyan"}>Back to Home</Button>
         </Link>
-     </div> 
-    )
+      </Box>
+      <PokePhoto />
+      <Divider orientation="horizontal" />
+      <PokeTypes />
+      <PokeMoves />
+    </Stack>
+  );
 }
 
-export default Details
+export default Details;

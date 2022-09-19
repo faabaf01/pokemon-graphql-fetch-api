@@ -1,28 +1,33 @@
-import { Button } from '@chakra-ui/react'
-import { Link } from '@tanstack/react-location'
-import React from 'react'
+import { Container, Flex, Stack } from "@chakra-ui/react";
+import { useState } from "react";
+import Header from "../components/Header";
+import Navigate from "../components/Navigate";
+import PokeCard from "../components/PokeCard";
 
 interface Props {}
 
 function Home(props: Props) {
-    const {} = props
-    const testData = [
-        {name: "bulbasaur"},
-        {name: "pikachu"},
-        {name: "charmander"},
-    ]
-    return (
-        <div>
-            home
-            {testData.map((p,i) => 
-            <Link key={i} to={`/details?name=${p.name}`}>
-                <Button>
-                {p.name}
-                </Button>
-            </Link>
-            )}
-        </div>
-    )
+  const [page, setPage] = useState("pokemons");
+  const {} = props;
+  // const testData = [
+  //   { name: "bulbasaur" },
+  //   { name: "pikachu" },
+  //   { name: "charmander" },
+  // ];
+  return (
+    <Flex bg="teal.100">
+      <Container maxW={"3xl"} padding={4}>
+        <Header />
+        <Navigate setPage={setPage} />
+
+        <Stack align={"center"} p={15}>
+          <p>Welcome to Home Page! Choose one of the pokemons: </p>
+        </Stack>
+
+        <PokeCard />
+      </Container>
+    </Flex>
+  );
 }
 
-export default Home
+export default Home;
