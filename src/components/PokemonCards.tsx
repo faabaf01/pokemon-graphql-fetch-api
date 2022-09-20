@@ -1,12 +1,20 @@
+//naming of variables
+//fetch from parent component only
 import { Box, Image, SimpleGrid } from "@chakra-ui/react";
 import { Link } from "@tanstack/react-location";
 import { useEffect, useState } from "react";
 import GET_ALL_POKEMONS from "../graphql/GetAllPokemons";
 
-function PokeCard() {
-  const pokemons = usePokemonList();
+function PokemonCards() {
+  const pokemons = useFetchPokemons();
+
   return (
-    <SimpleGrid minChildWidth="120px" spacing="40px" justifyItems={"center"}>
+    <SimpleGrid
+      minChildWidth="160px"
+      spacing="40px"
+      justifyItems={"center"}
+      p={10}
+    >
       {pokemons.map((p: { name: string }, i: number) => (
         <Link key={i} to={`/details?name=${p.name}`}>
           <Box bg={"honeydew"} rounded={10}>
@@ -36,8 +44,8 @@ function PokeCard() {
   );
 }
 
-function usePokemonList() {
-  const [poke, setPoke] = useState([]);
+function useFetchPokemons() {
+  const [pokemonsData, setPokemonsData] = useState([]);
   useEffect(() => {
     fetch("https://graphql-pokeapi.graphcdn.app/", {
       method: "POST",
@@ -45,8 +53,8 @@ function usePokemonList() {
       body: JSON.stringify({ query: GET_ALL_POKEMONS }),
     })
       .then((res) => res.json())
-      .then((data) => setPoke(data.data.pokemons.results));
+      .then((data) => setPokemonsData(data.data.pokemons.results));
   }, []);
-  return poke;
+  return pokemonsData;
 }
-export default PokeCard;
+export default PokemonCards;

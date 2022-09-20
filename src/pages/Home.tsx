@@ -1,32 +1,34 @@
-import { Container, Flex, Stack } from "@chakra-ui/react";
-import { useState } from "react";
+//add next / previous page
+//get data from parent
+import { Box, Stack, Text } from "@chakra-ui/react";
 import Header from "../components/Header";
-import Navigate from "../components/Navigate";
-import PokeCard from "../components/PokeCard";
+import PokemonCards from "../components/PokemonCards";
 
 interface Props {}
 
 function Home(props: Props) {
-  const [page, setPage] = useState("pokemons");
   const {} = props;
   // const testData = [
   //   { name: "bulbasaur" },
   //   { name: "pikachu" },
   //   { name: "charmander" },
   // ];
+
   return (
-    <Flex bg="teal.100">
-      <Container maxW={"3xl"} padding={4}>
-        <Header />
-        <Navigate setPage={setPage} />
+    <Box maxW={"full"} alignContent={"center"} bg="teal.100">
+      <Header />
 
-        <Stack align={"center"} p={15}>
-          <p>Welcome to Home Page! Choose one of the pokemons: </p>
-        </Stack>
+      <Stack align={"center"}>
+        <Text
+          fontSize={{ base: "13px", sm: "14px", md: "15px", lg: "16px" }}
+          p={4}
+        >
+          Welcome to the Home Page! Choose one of the Pokemons:
+        </Text>
+      </Stack>
 
-        <PokeCard />
-      </Container>
-    </Flex>
+      <PokemonCards />
+    </Box>
   );
 }
 

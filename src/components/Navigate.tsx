@@ -1,4 +1,4 @@
-import { Button, Stack, ButtonGroup, Box } from "@chakra-ui/react";
+import { Link, HStack } from "@chakra-ui/react";
 
 interface Props {
   setPage: any;
@@ -6,15 +6,19 @@ interface Props {
 
 export default function Navigate({ setPage }: Props) {
   return (
-    <Stack as={Box} textAlign={"center"} align={"center"}>
-      <ButtonGroup size="sm">
-        <Button colorScheme="cyan" onClick={() => setPage("pokemons")}>
-          Pokemon Names
-        </Button>
-        <Button colorScheme="cyan" onClick={() => setPage("PokeInfo")}>
-          Pokemon Info
-        </Button>
-      </ButtonGroup>
-    </Stack>
+    <HStack textAlign={"center"} align={"center"}>
+      <Link
+        onClick={() => setPage("pokemons")}
+        fontSize={{ base: "13px", sm: "14px", md: "15px", lg: "16px" }}
+      >
+        Home
+      </Link>
+      <Link
+        onClick={() => setPage("pokemons")}
+        fontSize={{ base: "13px", sm: "14px", md: "15px", lg: "16px" }}
+      >
+        Gallery
+      </Link>
+    </HStack>
   );
 }
