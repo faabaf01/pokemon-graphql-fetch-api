@@ -1,4 +1,4 @@
-import { Button, Divider, Stack } from "@chakra-ui/react";
+import { Button, Divider, Spinner, Stack } from "@chakra-ui/react";
 import { Link } from "@tanstack/react-location";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
@@ -20,16 +20,12 @@ function Details(props: Props) {
   }
 
   //should not
-  const [pokemonData, setPokemonData] = useState<IPokemon>({
-    name: "",
-    id: 1,
-    types: [],
-    moves: [],
-  });
+  const [pokemonData, setPokemonData] = useState<IPokemon>();
 
   const queryParams = new URLSearchParams(window.location.search);
   const name = queryParams.get("name");
 
+  console.log(pokemonData);
   useEffect(() => {
     fetch("https://graphql-pokeapi.graphcdn.app/", {
       method: "POST",
@@ -43,6 +39,7 @@ function Details(props: Props) {
       .then((data) => {
         // console.log(data);
         // console.log(data.data.pokemon);
+
         return setPokemonData(data.data.pokemon);
       });
   }, []);
@@ -54,11 +51,15 @@ function Details(props: Props) {
         <Button colorScheme={"cyan"}>Go back to Home</Button>
       </Link>
 
-      <PokemonNamePhoto name={pokemonData.name} id={pokemonData.id} />
-      <Divider orientation="horizontal" />
-
-      <PokemonTypes types={pokemonData.types} />
-      <PokemonMoves moves={pokemonData.moves} />
+      {pokemonData ? (
+        <>
+          <PokemonNamePhoto name={pokemonData.name} id={pokemonData.id} />
+          <PokemonTypes types={pokemonData.types} />
+          <PokemonMoves moves={pokemonData.moves} />
+        </>
+      ) : (
+        <Spinner>Loading data...</Spinner>
+      )}
     </Stack>
   );
 }
